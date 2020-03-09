@@ -110,11 +110,11 @@ def get_Video():
 
 
 #change this path to your path
-p = path(get_desktop(),
-         get_Documents(),
-         get_Pictures(),
-         get_Music(),
-         get_Video(),
+p = Path(get_desktop() + '\\',
+         get_Documents() + '\\',
+         get_Pictures() + '\\',
+         get_Music() + '\\',
+         get_Video() + '\\',
          'D:\\',
          'E:\\',
          'F:\\',
